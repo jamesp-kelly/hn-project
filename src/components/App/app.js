@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './App.css';
+import Search from '../../components/Search/';
+import Button from '../../components/Button/';
+import Table from '../../components/Table';
+import Loading from '../../components/Loading';
+import './app.css';
 
 const DEFAULT_QUERY = 'redux';
 const DEFAULT_PAGE = 0;
@@ -150,114 +153,6 @@ class App extends Component {
   }
 }
 
-class Search extends React.Component {
-
-  componentDidMount() {
-    this.input.focus();
-  }
-
-  render() {
-    const {
-      value,
-      onChange,
-      onSubmit,
-      children
-    } = this.props;
-
-    return ( 
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          value={value}
-          onChange={onChange}
-          ref={(node) => {this.input = node; }}
-        />
-        <button type="submit">
-          {children}
-        </button>
-      </form>
-    );
-  }
-
-}
-
-    
-  
-Search.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired
-};
-
-const Table = ({list, onDismiss }) => 
-  <div className="table">
-    { list.map(item =>
-      <div key={item.objectID} className="table-row">
-        <span style={{ width: '40%' }}>
-          <a href={item.url}>{item.title}</a>
-        </span>
-        <span style={{ width: '30%' }}>
-          {item.author}
-        </span>
-        <span style={{ width: '10%' }}>
-          {item.num_comments}
-        </span>
-        <span style={{ width: '10%' }}>{item.points}</span>
-        <span style={{ width: '10%' }}>
-          <Button
-            onClick={() => onDismiss(item.objectID)}
-            className="button-inline"  
-          >
-            Dismiss
-          </Button>
-        </span>
-      </div>
-    )}      
-  </div>
-
-Table.propTypes = {
-  list: PropTypes.arrayOf(
-    PropTypes.shape({
-      objectID: PropTypes.string.isRequired,
-      url: PropTypes.string,
-      title: PropTypes.string,
-      num_comments: PropTypes.number,
-      points: PropTypes.points
-    })).isRequired,
-  onDismiss: PropTypes.func.isRequired
-};
-
-const Button = ({onClick, className, children}) =>
-  <button
-    onClick={onClick}
-    className={className}
-    type="button"
-  >
-    {children}
-  </button>
-
-Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired
-};
-
-Button.defaultProps = {
-  className: ''
-};
-
-const Loading = () =>
-  <div>
-    <i className="fa fa-cog fa-spin fa-3x fa-fw"></i>
-    <span className="sr-only">Loading...</span>
-  </div>
 
 
 export default App;
-
-export {
-  Button,
-  Search,
-  Table
-};
