@@ -3,6 +3,7 @@ import Search from '../../components/Search/';
 import Button from '../../components/Button/';
 import Table from '../../components/Table';
 import Loading from '../../components/Loading';
+import withLoading from '../../components/Loading/withLoading';
 import './app.css';
 
 const DEFAULT_QUERY = 'redux';
@@ -125,6 +126,8 @@ class App extends Component {
       results[searchKey].hits
     ) || [];
 
+    const ButtonWithLoading = withLoading(Button);
+
     return (
       <div className="page">
         <div className="interactions">
@@ -141,12 +144,11 @@ class App extends Component {
           onDismiss={this.onDismiss}
         />
         <div className="interactions">
-          { isLoading
-            ? <Loading />
-            : <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
-                More
-              </Button>
-          }
+          <ButtonWithLoading 
+            isLoading={isLoading}
+            onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
+            More
+          </ButtonWithLoading>
         </div>
       </div>
     );
