@@ -6,8 +6,8 @@ import Sort from '../../components/Sort';
 
 const SORTS = {
   NONE: list => list,
-  TITLE: list => sortBy(list, 'title'),
-  AUTHOR: list => sortBy(list, 'author'),
+  TITLE: list => sortBy(list, [(item) => item.title.toLowerCase()]),
+  AUTHOR: list => sortBy(list, [(item) =>  item.author.toLowerCase()]), 
   COMMENTS: list => sortBy(list, 'num_comments').reverse(),
   POINTS: list => sortBy(list, 'points').reverse()
 }
