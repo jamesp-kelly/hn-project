@@ -6,7 +6,8 @@ const Sort = ({
   sortKey, 
   onSort, 
   children,
-  activeSortKey
+  activeSortKey,
+  isSortReverse
 }) =>
   {
     const sortClass = classNames(
@@ -14,12 +15,24 @@ const Sort = ({
       { 'button-active' : sortKey === activeSortKey}
     );
 
-    return (<Button 
-      onClick={() => onSort(sortKey)}
-      className={sortClass}
-    >
-      {children}
-    </Button>);
+    const arrowClass = classNames(
+      'fa',
+      { 'fa-arrow-up': !isSortReverse },
+      { 'fa-arrow-down': isSortReverse },
+      {'hidden': sortKey !== activeSortKey}
+    );
+
+    return (
+      <div>
+        <Button 
+          onClick={() => onSort(sortKey)}
+          className={sortClass}
+        >
+          {children}
+        </Button>
+        <i className={arrowClass} aria-hidden="true"></i>
+      </div>
+    );
   }
   
 
