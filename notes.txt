@@ -41,9 +41,23 @@ React
 
 – PropTypes let you define type checks for components
 – Jest allows you to write snapshot tests for your components – Enzyme allows you to write unit tests for your components
+
 ES6
 
 – import and export statements help you to organize your code
 
 General
 – code organization allows you to scale your application with best practices
+
+
+***update***
+
+React
+
+– the ref attribute to reference DOM nodes
+– higher order components are a common way to build advanced components – implementation of advanced interactions in React
+– conditional classNames with a neat helper library
+
+ES6
+
+– rest destructuring to split up objects and arrays
